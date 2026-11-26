@@ -12,7 +12,7 @@ class ProcessTranscripts():
         text=rawTranscript.lower
         wrds=text.split()
         cleaned=[]
-        for i in words:
+        for i in wrds:
             if i not in self.stpwrd:
                 cleaned.append(i)
         return cleaned
@@ -30,5 +30,8 @@ class ProcessTranscripts():
             #speach to text
             self.engine.say(text)
             self.engine.runAndWait()
-        def findMic(self,keyword):
-            #find mic
+        def listen(self):
+            with self.mic as source:
+                print("speak")
+                text=self.recogniser.listen(source)
+                print("Time")
